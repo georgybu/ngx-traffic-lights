@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import * as fromStore from '../../store/index';
-import { selectTrafficLights } from '../../store/traffic-lights/traffic-lights.selectors';
-import { ForwardTrafficLights } from '../../store/traffic-lights/traffic-lights.actions';
+import {Component, OnInit} from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {getCurrentState, SetNextTrafficLightState, State} from '../../store/traffic-lights';
 
 @Component({
   selector: 'app-traffic-lights',
@@ -10,15 +8,13 @@ import { ForwardTrafficLights } from '../../store/traffic-lights/traffic-lights.
   styleUrls: ['./traffic-lights.component.scss']
 })
 export class TrafficLightsComponent implements OnInit {
-  private lights$: any;
-  constructor(private store: Store<fromStore.State>) {
-    this.lights$ = this.store.pipe(select(selectTrafficLights));
+  public trafficLightState$: any;
+
+  constructor(private store: Store<State>) {
+    this.trafficLightState$ = this.store.pipe(select(getCurrentState));
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.store.dispatch(new ForwardTrafficLights());
-    }, 5000);
+    setInterval(() => this.store.dispatch(new SetNextTrafficLightState()), 2000);
   }
-
 }
