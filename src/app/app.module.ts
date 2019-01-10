@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from './app.component';
 import { TrafficLightsComponent } from './featured/traffic-lights/traffic-lights.component';
 import { reducers, metaReducers } from './store';
+import { TrafficLightsEffects } from './store/traffic-lights/traffic-lights.effects';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -16,7 +17,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([TrafficLightsEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

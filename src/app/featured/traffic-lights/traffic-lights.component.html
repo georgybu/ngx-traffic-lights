@@ -1,5 +1,5 @@
-<div id="box">
-  <div class="light red" [ngClass]="{'checked': lights.isRed}"></div>
-  <div class="light yellow" [ngClass]="{'checked': lights.isYellow}"></div>
-  <div class="light green" [ngClass]="{'checked': lights.isGreen}"></div>
+<div id="box" *ngIf="lights$ | async as lights">
+  <div class="light red" [ngClass]="{'checked': lights?.isRed}"></div>
+  <div class="light yellow" [ngClass]="{'checked': lights?.isYellow}"></div>
+  <div class="light green" [ngClass]="{'checked': lights?.isGreen}"></div>
 </div>
