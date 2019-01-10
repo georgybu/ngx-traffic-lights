@@ -1,12 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {StoreModule} from '@ngrx/store';
 
-import { AppComponent } from './app.component';
-import { TrafficLightsComponent } from './featured/traffic-lights/traffic-lights.component';
-import { reducers, metaReducers } from './store';
-import { environment } from '../environments/environment';
+import {AppComponent} from './app.component';
+import {TrafficLightsComponent} from './featured/traffic-lights/traffic-lights.component';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {reducer} from './store/traffic-lights';
 
 @NgModule({
   declarations: [
@@ -15,10 +14,11 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([])
+    StoreModule.forRoot({trafficLight: reducer}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
